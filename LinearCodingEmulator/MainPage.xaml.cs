@@ -53,7 +53,7 @@ namespace LinearCodingEmulator
             Button Button = sender as Button;
             if (MessageTextBox.Text.Length < 2 || ComboBox.SelectedValue == null)
             {
-                var ErrorDialog = new MessageDialog("Message must be in a binary format, have at least 2 symbols and coding must be selected.\nMake sure all these conditions are fulfilled.");
+                var ErrorDialog = new MessageDialog("Message must be in a binary format, have at least 2 symbols and coding algorithm must be selected.\nMake sure all these conditions are fulfilled.");
                 ErrorDialog.ShowAsync();
                 return;
             }
