@@ -11,13 +11,13 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
         <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Center" Width="Auto" Margin="0,0,0,0">
-            <ComboBox x:Name="ComboBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="93" SelectionChanged="ComboBox_SelectionChanged"/>
+            <ComboBox x:Name="ComboBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="99"/>
             <oxy:PlotView x:Name="PlotView" HorizontalAlignment="Stretch" MaxHeight="400" MinHeight="270" VerticalAlignment="Stretch" />
             <StackPanel  
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
             Orientation="Horizontal" Margin="0,0,0,0">
-                <TextBox x:Name="MessageTextBox" HorizontalAlignment="Left" MaxLength="18" PlaceholderText="Enter message here..." VerticalAlignment="Center" Margin="0,0,0,0" Width="373"/>
+                <TextBox x:Name="MessageTextBox" HorizontalAlignment="Left" MaxLength="18" PlaceholderText="Enter message here..." VerticalAlignment="Center" Margin="0,0,0,0" Width="373" KeyDown="MessageTextBox_KeyDown"/>
                 <Button Content="Code message" HorizontalAlignment="Center" VerticalAlignment="Center" Width="151" Click="Button_Click"/>
             </StackPanel>
         </StackPanel>

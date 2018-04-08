@@ -37,23 +37,24 @@ namespace LinearCodingEmulator
             this.InitializeComponent();
             List<String> LinearCodingAlgorythms = new List<String> { "NRZ Uni", "NRZ Bi", "AMI", "B3Z", "B6Z", "HDB3" };
             ComboBox.ItemsSource = LinearCodingAlgorythms;
+            ComboBox.SelectedIndex = 0;
             Coder = new LinearCoder();
 
         }
 
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            // Get the ComboBox instance
-            ComboBox comboBox = sender as ComboBox;
-        }
+        //private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    // Get the ComboBox instance
+        //    ComboBox comboBox = sender as ComboBox;
+        //}
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Button Button = sender as Button;
+            //Button Button = sender as Button;
             if (MessageTextBox.Text.Length < 2 || ComboBox.SelectedValue == null)
             {
-                var ErrorDialog = new MessageDialog("Message must be in a binary format, have at least 2 symbols and coding algorithm must be selected.\nMake sure all these conditions are fulfilled.");
+                var ErrorDialog = new MessageDialog("Message must be in a binary format and have at least 2 symbols.");
                 ErrorDialog.ShowAsync();
                 return;
             }
@@ -64,6 +65,14 @@ namespace LinearCodingEmulator
                 return;
             }
             PlotView.Model = Coder.model;
+        }
+
+        private void MessageTextBox_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
+        {
+            if(e.Key == Windows.System.VirtualKey.Enter)
+            {
+                Button_Click(sender,e);
+            }
         }
     }
 }
