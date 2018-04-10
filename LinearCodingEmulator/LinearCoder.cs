@@ -64,7 +64,6 @@ namespace LinearCodingEmulator
             linearAxisX.AxislineColor = OxyColors.Black;
             model.Axes.Add(linearAxisX);
 
-
             PointList = new OxyPlot.Series.LineSeries();
             PointList.Color = OxyColors.Red;
 
@@ -139,13 +138,13 @@ namespace LinearCodingEmulator
                 value = int.Parse(Message[idx].ToString());
                 if (value == 1)
                 {
-                    if(isZeroSequence)
+                    if (isZeroSequence)
                     {
                         SequenceLenght = idx - FZeroIdx;
                         SequenceLenght = SequenceLenght / 3;
-                        if(SequenceLenght % 2 == 0)//B0V
+                        if (SequenceLenght % 2 == 0)//B0V
                         {
-                            for(int idx1=FZeroIdx; idx1 < FZeroIdx + SequenceLenght * 3;)
+                            for (int idx1 = FZeroIdx; idx1 < FZeroIdx + SequenceLenght * 3;)
                             {
                                 CodedMessage[idx1] = sign;//B
                                 CodedMessage[idx1 + 2] = sign;//V
@@ -169,7 +168,7 @@ namespace LinearCodingEmulator
                 }
                 else
                 {
-                    if(isZeroSequence == false)
+                    if (isZeroSequence == false)
                     {
                         FZeroIdx = idx;
                         isZeroSequence = true;
@@ -201,14 +200,14 @@ namespace LinearCodingEmulator
 
                         for (int idx1 = FZeroIdx; idx1 < FZeroIdx + SequenceLenght * 6;)
                         {
-                            CodedMessage[idx1+1] = -sign;//V
+                            CodedMessage[idx1 + 1] = -sign;//V
                             CodedMessage[idx1 + 2] = sign;//B
 
                             CodedMessage[idx1 + 4] = sign;//V
                             CodedMessage[idx1 + 5] = -sign;//B
                             idx1 += 6;
                         }
-                        
+
                         isZeroSequence = false;
                     }
 

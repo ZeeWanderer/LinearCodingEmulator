@@ -39,26 +39,17 @@ namespace LinearCodingEmulator
             ComboBox.ItemsSource = LinearCodingAlgorythms;
             ComboBox.SelectedIndex = 0;
             Coder = new LinearCoder();
-
         }
-
-
-        //private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    // Get the ComboBox instance
-        //    ComboBox comboBox = sender as ComboBox;
-        //}
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //Button Button = sender as Button;
             if (MessageTextBox.Text.Length < 2 || ComboBox.SelectedValue == null)
             {
-                var ErrorDialog = new MessageDialog("Message must be in a binary format and have at least 2 symbols.");
+                var ErrorDialog = new MessageDialog("Message must be in binary format and have at least 2 symbols.");
                 ErrorDialog.ShowAsync();
                 return;
             }
-            if(!Coder.Code(ComboBox.SelectedValue.ToString(), MessageTextBox.Text))
+            if (!Coder.Code(ComboBox.SelectedValue.ToString(), MessageTextBox.Text))
             {
                 var ErrorDialog = new MessageDialog("Message must be in binary format, meaning that only '0' and '1' are allowed in the message.");
                 ErrorDialog.ShowAsync();
@@ -69,9 +60,9 @@ namespace LinearCodingEmulator
 
         private void MessageTextBox_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
         {
-            if(e.Key == Windows.System.VirtualKey.Enter)
+            if (e.Key == Windows.System.VirtualKey.Enter)
             {
-                Button_Click(sender,e);
+                Button_Click(sender, e);
             }
         }
     }
