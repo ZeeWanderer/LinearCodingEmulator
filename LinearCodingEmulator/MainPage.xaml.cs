@@ -65,5 +65,10 @@ namespace LinearCodingEmulator
                 Button_Click(sender, e);
             }
         }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

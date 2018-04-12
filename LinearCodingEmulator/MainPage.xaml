@@ -11,7 +11,7 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
         <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Center" Width="Auto" Margin="0,0,0,0">
-            <ComboBox x:Name="ComboBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="99"/>
+            <ComboBox x:Name="ComboBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="99" SelectionChanged="ComboBox_SelectionChanged"/>
             <oxy:PlotView x:Name="PlotView" HorizontalAlignment="Stretch" MaxHeight="400" MinHeight="270" VerticalAlignment="Stretch" />
             <StackPanel  
                 VerticalAlignment="Center"

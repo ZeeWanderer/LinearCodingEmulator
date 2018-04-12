@@ -53,6 +53,7 @@ namespace LinearCodingEmulator
             linearAxisY.Position = AxisPosition.Bottom;
             linearAxisY.IsZoomEnabled = false;
             linearAxisY.IsPanEnabled = false;
+            linearAxisY.Minimum = 18;
             model.Axes.Add(linearAxisY);
 
             linearAxisX = new LinearAxis();
