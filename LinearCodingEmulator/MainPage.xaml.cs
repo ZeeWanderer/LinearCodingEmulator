@@ -56,6 +56,7 @@ namespace LinearCodingEmulator
                 return;
             }
             PlotView.Model = Coder.model;
+            PlotViewCLK.Model = Coder.modelCLK;
         }
 
         private void MessageTextBox_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
@@ -64,11 +65,6 @@ namespace LinearCodingEmulator
             {
                 Button_Click(sender, e);
             }
-        }
-
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

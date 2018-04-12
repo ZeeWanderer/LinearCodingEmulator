@@ -6,11 +6,15 @@ namespace LinearCodingEmulator
     internal class LinearCoder
     {
         public OxyPlot.Series.LineSeries PointList;
-        public LinearAxis linearAxisY;
+        public OxyPlot.Series.LineSeries PointListCLK;
         public LinearAxis linearAxisX;
+        public LinearAxis linearAxisY;
+        public CategoryAxis CategoryAxisX;
         public PlotModel model;
+        public PlotModel modelCLK;
         private string Mode;
         private static int[] CodedMessage;
+        private static string InitialMessage;
 
         public bool Code(string Alg, string Message)
         {
@@ -19,6 +23,7 @@ namespace LinearCodingEmulator
                 if (t != '0' && t != '1') return false;
             }
             Mode = Alg;
+            InitialMessage = Message;
             switch (Alg)
             {
                 case "NRZ Uni":
@@ -47,42 +52,103 @@ namespace LinearCodingEmulator
         private void FillPoinList(double MaxDelta = 1)
         {
             model = new PlotModel();
-
-            linearAxisY = new LinearAxis();
-            linearAxisY.MajorGridlineStyle = LineStyle.Dot;
-            linearAxisY.Position = AxisPosition.Bottom;
-            linearAxisY.IsZoomEnabled = false;
-            linearAxisY.IsPanEnabled = false;
-            linearAxisY.Minimum = 18;
-            model.Axes.Add(linearAxisY);
+            model.PlotAreaBorderColor = OxyColors.Transparent;
 
             linearAxisX = new LinearAxis();
-            linearAxisX.MajorGridlineStyle = LineStyle.Solid;
-            linearAxisX.MajorGridlineThickness = 2;
-            linearAxisX.CropGridlines = true;
+            linearAxisX.MajorGridlineStyle = LineStyle.Dot;
+            linearAxisX.Position = AxisPosition.Bottom;
             linearAxisX.IsZoomEnabled = false;
             linearAxisX.IsPanEnabled = false;
-            linearAxisX.AxislineColor = OxyColors.Black;
+            linearAxisX.Minimum = 0;
+            linearAxisX.Maximum = 18;
             model.Axes.Add(linearAxisX);
+
+            linearAxisY = new LinearAxis();
+            linearAxisY.MajorGridlineStyle = LineStyle.Solid;
+            linearAxisY.Position = AxisPosition.Left;
+            linearAxisY.MajorGridlineThickness = 2;
+            linearAxisY.CropGridlines = true;
+            linearAxisY.IsZoomEnabled = false;
+            linearAxisY.IsPanEnabled = false;
+            linearAxisY.AxislineColor = OxyColors.Black;
+            model.Axes.Add(linearAxisY);
+
+
+            CategoryAxisX = new CategoryAxis();
+            CategoryAxisX.Position = AxisPosition.Top;
+            CategoryAxisX.Minimum = 0;
+            CategoryAxisX.Maximum = 18;
+            for (int idx0 = 0; idx0 < InitialMessage.Length; idx0++)
+            {
+                CategoryAxisX.ActualLabels.Add("  |" + InitialMessage[idx0]);
+            }
+            model.Axes.Add(CategoryAxisX);
+
 
             PointList = new OxyPlot.Series.LineSeries();
             PointList.Color = OxyColors.Red;
 
             model.Series.Add(PointList);
-
-            int idx1 = 0;
-            PointList.Points.Add(new DataPoint(idx1, CodedMessage[0] * MaxDelta));
-            for (int idx0 = 0; idx0 < CodedMessage.Length - 1; idx0++)
             {
-                idx1++;
-                PointList.Points.Add(new DataPoint(idx1, CodedMessage[idx0] * MaxDelta));
-
-                if (CodedMessage[idx0] != CodedMessage[idx0 + 1])
+                int idx1 = 0;
+                PointList.Points.Add(new DataPoint(idx1, CodedMessage[0] * MaxDelta));
+                for (int idx0 = 0; idx0 < CodedMessage.Length - 1; idx0++)
                 {
-                    PointList.Points.Add(new DataPoint(idx1, CodedMessage[idx0 + 1] * MaxDelta));
+                    idx1++;
+                    PointList.Points.Add(new DataPoint(idx1, CodedMessage[idx0] * MaxDelta));
+
+                    if (CodedMessage[idx0] != CodedMessage[idx0 + 1])
+                    {
+                        PointList.Points.Add(new DataPoint(idx1, CodedMessage[idx0 + 1] * MaxDelta));
+                    }
+                }
+                PointList.Points.Add(new DataPoint(idx1 + 1, CodedMessage[CodedMessage.Length - 1] * MaxDelta));
+            }
+            //CLK
+            modelCLK = new PlotModel();
+            modelCLK.PlotAreaBorderColor = OxyColors.Transparent;
+
+            linearAxisX = new LinearAxis();
+            linearAxisX.MajorGridlineStyle = LineStyle.Dot;
+            linearAxisX.Position = AxisPosition.Bottom;
+            linearAxisX.IsZoomEnabled = false;
+            linearAxisX.IsPanEnabled = false;
+            linearAxisX.IsAxisVisible = false;
+            linearAxisX.Minimum = 0;
+            linearAxisX.Maximum = 18;
+            modelCLK.Axes.Add(linearAxisX);
+
+            linearAxisY = new LinearAxis();
+            linearAxisY.MajorGridlineStyle = LineStyle.Solid;
+            linearAxisY.Position = AxisPosition.Left;
+            linearAxisY.MajorGridlineThickness = 2;
+            linearAxisY.CropGridlines = true;
+            linearAxisY.IsZoomEnabled = false;
+            linearAxisY.IsPanEnabled = false;
+            linearAxisY.AxislineColor = OxyColors.Black;
+
+
+            modelCLK.Axes.Add(linearAxisY);
+            
+
+
+            PointListCLK = new OxyPlot.Series.LineSeries();
+            PointListCLK.Color = OxyColors.Red;
+
+            modelCLK.Series.Add(PointListCLK);
+
+
+            {
+                double idx1 = 0;
+                for (int idx0 = 0; idx0 < CodedMessage.Length; idx0++)
+                {
+                    PointListCLK.Points.Add(new DataPoint(idx1, 1));
+                    PointListCLK.Points.Add(new DataPoint(idx1 + 0.5, 1));
+                    PointListCLK.Points.Add(new DataPoint(idx1 + 0.5, 0));
+                    PointListCLK.Points.Add(new DataPoint(idx1 + 1, 0));
+                    idx1++;
                 }
             }
-            PointList.Points.Add(new DataPoint(idx1 + 1, CodedMessage[CodedMessage.Length - 1] * MaxDelta));
         }
 
         private bool NRZUni(string Message)
