@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="65327MaxKulyk.LinearCodingEmulator" Publisher="CN=990FA0BC-2B08-48AD-A6C7-471634D21FFB" Version="1.0.2.0" />
+  <Identity Name="65327MaxKulyk.LinearCodingEmulator" Publisher="CN=990FA0BC-2B08-48AD-A6C7-471634D21FFB" Version="1.0.6.0" />
   <mp:PhoneIdentity PhoneProductId="5c9dc75a-45d0-4ef1-976c-d5df413b3626" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>LinearCodingEmulator</DisplayName>

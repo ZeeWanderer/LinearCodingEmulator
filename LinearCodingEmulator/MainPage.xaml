@@ -6,13 +6,13 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:oxy="using:OxyPlot.Windows"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Loaded="Page_Loaded">
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
         <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Center" Width="Auto" Margin="0,0,0,0">
-            <ComboBox x:Name="ComboBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="99"/>
-            <oxy:PlotView x:Name="PlotViewCLK" HorizontalAlignment="Stretch" MaxHeight="400" MinHeight="270" VerticalAlignment="Stretch" />
-            <oxy:PlotView x:Name="PlotView" HorizontalAlignment="Stretch" MaxHeight="400" MinHeight="270" VerticalAlignment="Stretch" />
+            <ComboBox x:Name="ComboBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="99" SelectionChanged="ComboBox_SelectionChanged"/>
+            <oxy:PlotView x:Name="PlotViewCLK" HorizontalAlignment="Stretch" Height="270" VerticalAlignment="Stretch" />
+            <oxy:PlotView x:Name="PlotView" HorizontalAlignment="Stretch" Height="310" VerticalAlignment="Stretch" />
             <StackPanel  
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"

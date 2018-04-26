@@ -1,5 +1,6 @@
 ﻿using OxyPlot;
 using OxyPlot.Axes;
+using System;
 
 namespace LinearCodingEmulator
 {
@@ -44,6 +45,9 @@ namespace LinearCodingEmulator
                 case "HDB3":
                     return HDB3(Message);
 
+                case "MLT3":
+                    return MLT3(Message);
+
                 default:
                     return false;
             }
@@ -61,6 +65,8 @@ namespace LinearCodingEmulator
             linearAxisX.IsPanEnabled = false;
             linearAxisX.Minimum = 0;
             linearAxisX.Maximum = 18;
+            
+
             model.Axes.Add(linearAxisX);
 
             linearAxisY = new LinearAxis();
@@ -71,6 +77,10 @@ namespace LinearCodingEmulator
             linearAxisY.IsZoomEnabled = false;
             linearAxisY.IsPanEnabled = false;
             linearAxisY.AxislineColor = OxyColors.Black;
+            linearAxisY.Minimum = -1.03;
+            linearAxisY.Maximum = 1.03;
+
+
             model.Axes.Add(linearAxisY);
 
 
@@ -116,6 +126,8 @@ namespace LinearCodingEmulator
             linearAxisX.IsAxisVisible = false;
             linearAxisX.Minimum = 0;
             linearAxisX.Maximum = 18;
+
+
             modelCLK.Axes.Add(linearAxisX);
 
             linearAxisY = new LinearAxis();
@@ -126,7 +138,7 @@ namespace LinearCodingEmulator
             linearAxisY.IsZoomEnabled = false;
             linearAxisY.IsPanEnabled = false;
             linearAxisY.AxislineColor = OxyColors.Black;
-
+            
 
             modelCLK.Axes.Add(linearAxisY);
             
@@ -338,5 +350,28 @@ namespace LinearCodingEmulator
             FillPoinList(0.5);
             return true;
         }
+
+        private bool MLT3(string Message)
+        {
+            CodedMessage = new int[Message.Length];
+            int sign = 1;
+            int CodedBit = 0;
+            int value = 0;
+            for (int idx = 0; idx < CodedMessage.Length; idx++)
+            {
+                value = int.Parse(Message[idx].ToString());
+                if (value == 1)
+                {
+                    if (Math.Abs(CodedBit) == 1) sign *= -1;
+                    CodedBit += sign;
+                    CodedMessage[idx] = CodedBit;
+                }
+                else CodedMessage[idx] = CodedBit;
+            }
+            FillPoinList(1);
+            return true;
+        }
     }
+
+
 }
