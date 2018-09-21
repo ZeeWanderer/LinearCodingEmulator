@@ -127,7 +127,6 @@ namespace LinearCodingEmulator
             linearAxisX.Minimum = 0;
             linearAxisX.Maximum = 18;
 
-
             modelCLK.Axes.Add(linearAxisX);
 
             linearAxisY = new LinearAxis();
@@ -138,12 +137,11 @@ namespace LinearCodingEmulator
             linearAxisY.IsZoomEnabled = false;
             linearAxisY.IsPanEnabled = false;
             linearAxisY.AxislineColor = OxyColors.Black;
-            
+            linearAxisY.Minimum = -1.03;
+            linearAxisY.Maximum = 1.03;
 
             modelCLK.Axes.Add(linearAxisY);
             
-
-
             PointListCLK = new OxyPlot.Series.LineSeries();
             PointListCLK.Color = OxyColors.Red;
 
@@ -156,8 +154,8 @@ namespace LinearCodingEmulator
                 {
                     PointListCLK.Points.Add(new DataPoint(idx1, 1));
                     PointListCLK.Points.Add(new DataPoint(idx1 + 0.5, 1));
-                    PointListCLK.Points.Add(new DataPoint(idx1 + 0.5, 0));
-                    PointListCLK.Points.Add(new DataPoint(idx1 + 1, 0));
+                    PointListCLK.Points.Add(new DataPoint(idx1 + 0.5, -1));
+                    PointListCLK.Points.Add(new DataPoint(idx1 + 1, -1));
                     idx1++;
                 }
             }
@@ -368,7 +366,7 @@ namespace LinearCodingEmulator
                 }
                 else CodedMessage[idx] = CodedBit;
             }
-            FillPoinList(1);
+            FillPoinList(0.5);
             return true;
         }
     }

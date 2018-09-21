@@ -8,19 +8,18 @@
     xmlns:oxy="using:OxyPlot.Windows"
     mc:Ignorable="d" Loaded="Page_Loaded">
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Center" Width="Auto" Margin="0,0,0,0">
-            <ComboBox x:Name="ComboBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="99" SelectionChanged="ComboBox_SelectionChanged"/>
-            <oxy:PlotView x:Name="PlotViewCLK" HorizontalAlignment="Stretch" Height="270" VerticalAlignment="Stretch" />
-            <oxy:PlotView x:Name="PlotView" HorizontalAlignment="Stretch" Height="310" VerticalAlignment="Stretch" />
-            <StackPanel  
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center"
-            Orientation="Horizontal" Margin="0,0,0,0">
-                <TextBox x:Name="MessageTextBox" Text="101000000100001101" HorizontalAlignment="Left" MaxLength="18" PlaceholderText="Enter message here..." VerticalAlignment="Center" Margin="0,0,0,0" Width="373" KeyDown="MessageTextBox_KeyDown"/>
-                <Button Content="Code message" HorizontalAlignment="Center" VerticalAlignment="Center" Width="151" Click="Button_Click"/>
-            </StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="1.37*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ComboBox x:Name="ComboBox" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="99" Margin="0,50,0,0" SelectionChanged="ComboBox_SelectionChanged"/>
+        <oxy:PlotView x:Name="PlotViewCLK" Grid.Row="1" HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" />
+        <oxy:PlotView x:Name="PlotView" Grid.Row="2" HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" />
+        <StackPanel Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,0,0,50">
+            <TextBox x:Name="MessageTextBox" Text="101000000100001101" HorizontalAlignment="Left" MaxLength="18" PlaceholderText="Enter message here..." VerticalAlignment="Center" Width="373" KeyDown="MessageTextBox_KeyDown"/>
+            <Button Content="Code message" HorizontalAlignment="Center" VerticalAlignment="Center" Width="151" Click="Button_Click"/>
         </StackPanel>
-
     </Grid>
 </Page>
